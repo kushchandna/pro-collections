@@ -1,7 +1,7 @@
 package com.kush.procol.index;
 
-import com.kush.procol.utils.IterableResult;
-import com.kush.procol.utils.ranges.RangeSet;
+import com.kush.commons.IterableResult;
+import com.kush.commons.ranges.RangeSet;
 
 public interface Index<K, T> {
 

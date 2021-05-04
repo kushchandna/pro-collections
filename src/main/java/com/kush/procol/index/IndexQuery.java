@@ -3,7 +3,7 @@ package com.kush.procol.index;
 import java.util.List;
 import java.util.function.Predicate;
 
-import com.kush.procol.utils.ranges.RangeSet;
+import com.kush.commons.ranges.RangeSet;
 
 public interface IndexQuery<T> {
 

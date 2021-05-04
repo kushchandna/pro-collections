@@ -2,7 +2,7 @@ package com.kush.procol.index;
 
 import java.util.Optional;
 
-import com.kush.procol.utils.IterableResult;
+import com.kush.commons.IterableResult;
 
 public interface IndexResult<T> {
 

@@ -3,7 +3,7 @@ package com.kush.procol.index;
 import java.util.AbstractCollection;
 import java.util.stream.Stream;
 
-import com.kush.procol.utils.IterableResult;
+import com.kush.commons.IterableResult;
 
 public abstract class AbstractIndexableCollection<T> extends AbstractCollection<T> implements IndexableCollection<T> {
 
