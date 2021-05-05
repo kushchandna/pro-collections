@@ -1,11 +1,11 @@
-package com.kush.procol.index;
+package com.kush.procol;
 
 import java.util.Iterator;
 import java.util.Optional;
 
 import com.kush.commons.IterableResult;
 import com.kush.commons.ranges.RangeSet;
-import com.kush.procol.index.IndexQuery.RangeSetProvider;
+import com.kush.procol.IndexQuery.RangeSetProvider;
 
 public abstract class IndexSelectionPolicy<T> {
 

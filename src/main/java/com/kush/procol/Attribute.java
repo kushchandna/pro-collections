@@ -1,4 +1,4 @@
-package com.kush.procol.index;
+package com.kush.procol;
 
 public interface Attribute {
 }

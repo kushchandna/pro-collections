@@ -1,4 +1,4 @@
-package com.kush.procol.index;
+package com.kush.procol;
 
 import java.util.Optional;
 
@@ -10,10 +10,6 @@ public interface IndexResult<T> {
 
     static <T> IndexResult<T> from(IterableResult<T> result) {
         return () -> Optional.of(result);
-    }
-
-    static <T> IndexResult<T> from(Optional<IterableResult<T>> result) {
-        return result.isPresent() ? () -> result : empty();
     }
 
     static <T> IndexResult<T> empty() {

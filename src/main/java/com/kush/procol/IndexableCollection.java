@@ -1,11 +1,11 @@
-package com.kush.procol.index;
+package com.kush.procol;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Optional;
 
 import com.kush.commons.IterableResult;
-import com.kush.procol.index.IndexSelectionPolicy.IndexOption;
+import com.kush.procol.IndexSelectionPolicy.IndexOption;
 
 public interface IndexableCollection<T> extends Collection<T> {
 

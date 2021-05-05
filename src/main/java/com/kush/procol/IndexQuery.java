@@ -1,11 +1,11 @@
-package com.kush.procol.index;
+package com.kush.procol;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 import com.kush.commons.ranges.RangeSet;
-import com.kush.procol.index.policies.MostSelectiveIndexPolicy;
+import com.kush.procol.indexes.policies.MostSelectiveIndexPolicy;
 
 public interface IndexQuery<T> {
 
@@ -17,7 +17,11 @@ public interface IndexQuery<T> {
         return new MostSelectiveIndexPolicy<>();
     }
 
-    default Predicate<T> filter() {
+    default boolean skipFallbackFilter() {
+        return false;
+    }
+
+    default Predicate<T> fallbackFilter() {
         return obj -> true;
     }
 

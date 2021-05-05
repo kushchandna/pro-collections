@@ -1,4 +1,4 @@
-package com.kush.procol.index;
+package com.kush.procol;
 
 import com.kush.commons.IterableResult;
 import com.kush.commons.ranges.RangeSet;

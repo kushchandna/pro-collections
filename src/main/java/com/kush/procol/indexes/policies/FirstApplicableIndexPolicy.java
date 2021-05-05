@@ -1,12 +1,12 @@
-package com.kush.procol.index.policies;
+package com.kush.procol.indexes.policies;
 
 import java.util.Iterator;
 import java.util.Optional;
 
 import com.kush.commons.IterableResult;
 import com.kush.commons.ranges.RangeSet;
-import com.kush.procol.index.IndexQuery.RangeSetProvider;
-import com.kush.procol.index.IndexSelectionPolicy;
+import com.kush.procol.IndexSelectionPolicy;
+import com.kush.procol.IndexQuery.RangeSetProvider;
 
 public class FirstApplicableIndexPolicy<T> extends IndexSelectionPolicy<T> {
 

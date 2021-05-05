@@ -1,6 +1,6 @@
-package com.kush.procol.index.collections;
+package com.kush.procol.support;
 
-import static com.kush.procol.index.IndexSelectionPolicy.option;
+import static com.kush.procol.IndexSelectionPolicy.option;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -9,12 +9,12 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.kush.commons.IterableResult;
-import com.kush.procol.index.Attribute;
-import com.kush.procol.index.Index;
-import com.kush.procol.index.IndexQuery;
-import com.kush.procol.index.IndexResult;
-import com.kush.procol.index.IndexSelectionPolicy.IndexOption;
-import com.kush.procol.index.IndexableCollection;
+import com.kush.procol.Attribute;
+import com.kush.procol.Index;
+import com.kush.procol.IndexQuery;
+import com.kush.procol.IndexResult;
+import com.kush.procol.IndexSelectionPolicy.IndexOption;
+import com.kush.procol.IndexableCollection;
 
 public class DefaultIndexableCollection<T> extends AbstractIndexableCollection<T> {
 
@@ -39,7 +39,10 @@ public class DefaultIndexableCollection<T> extends AbstractIndexableCollection<T
             .filter(opt -> opt.getIndex() != null)
             .iterator();
         Optional<IterableResult<T>> result = IndexableCollection.getResult(options, query);
-        return IndexResult.from(result);
+        if (result.isPresent()) {
+            return IndexResult.from(result.get());
+        }
+        return super.query(query);
     }
 
     @Override
