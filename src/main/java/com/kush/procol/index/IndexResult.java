@@ -12,6 +12,10 @@ public interface IndexResult<T> {
         return () -> Optional.of(result);
     }
 
+    static <T> IndexResult<T> from(Optional<IterableResult<T>> result) {
+        return result.isPresent() ? () -> result : empty();
+    }
+
     static <T> IndexResult<T> empty() {
         return () -> Optional.empty();
     }

@@ -1,9 +1,14 @@
-package com.kush.procol.index;
+package com.kush.procol.index.collections;
 
 import java.util.AbstractCollection;
 import java.util.stream.Stream;
 
 import com.kush.commons.IterableResult;
+import com.kush.procol.index.Attribute;
+import com.kush.procol.index.Index;
+import com.kush.procol.index.IndexQuery;
+import com.kush.procol.index.IndexResult;
+import com.kush.procol.index.policies.IndexSelectionPolicy;
 
 public abstract class AbstractIndexableCollection<T> extends AbstractCollection<T> implements IndexableCollection<T> {
 
