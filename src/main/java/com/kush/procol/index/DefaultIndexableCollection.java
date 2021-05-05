@@ -3,7 +3,6 @@ package com.kush.procol.index;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DefaultIndexableCollection<T> extends AbstractIndexableCollection<T> {
@@ -27,12 +26,6 @@ public class DefaultIndexableCollection<T> extends AbstractIndexableCollection<T
 
     @Override
     public IndexResult<T> query(IndexQuery<T> query) {
-        List<Attribute> attributes = query.getFilterAttributes();
-        for (Attribute attribute : attributes) {
-            Index<?, T> index = indexes.get(attribute);
-            if (index != null) {
-            }
-        }
         return super.query(query);
     }
 
