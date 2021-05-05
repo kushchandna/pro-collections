@@ -12,8 +12,6 @@ public class DefaultIndexableCollection<T> extends AbstractIndexableCollection<T
 
     private final Collection<T> collection;
 
-    private IndexSelectionPolicy<T> policy;
-
     public DefaultIndexableCollection(Collection<T> collection) {
         this.collection = collection;
     }
@@ -25,7 +23,6 @@ public class DefaultIndexableCollection<T> extends AbstractIndexableCollection<T
 
     @Override
     public void setIndexSelectionPolicy(IndexSelectionPolicy<T> policy) {
-        this.policy = policy;
     }
 
     @Override
