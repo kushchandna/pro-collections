@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import com.kush.commons.ranges.RangeSet;
+import com.kush.procol.index.policies.MostSelectiveIndexPolicy;
 
 public interface IndexQuery<T> {
 
@@ -12,7 +13,13 @@ public interface IndexQuery<T> {
 
     RangeSetProvider getRangeSetProvider();
 
-    Predicate<T> filter();
+    default IndexSelectionPolicy<T> getIndexSelectionPolicy() {
+        return new MostSelectiveIndexPolicy<>();
+    }
+
+    default Predicate<T> filter() {
+        return obj -> true;
+    }
 
     interface RangeSetProvider {
 

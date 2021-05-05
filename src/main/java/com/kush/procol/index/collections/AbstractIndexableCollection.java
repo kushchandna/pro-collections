@@ -8,17 +8,12 @@ import com.kush.procol.index.Attribute;
 import com.kush.procol.index.Index;
 import com.kush.procol.index.IndexQuery;
 import com.kush.procol.index.IndexResult;
-import com.kush.procol.index.policies.IndexSelectionPolicy;
+import com.kush.procol.index.IndexableCollection;
 
 public abstract class AbstractIndexableCollection<T> extends AbstractCollection<T> implements IndexableCollection<T> {
 
     @Override
     public <K> void addIndex(Attribute attribute, Index<K, T> index) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void setIndexSelectionPolicy(IndexSelectionPolicy<T> policy) {
         throw new UnsupportedOperationException();
     }
 

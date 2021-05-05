@@ -1,5 +1,7 @@
 package com.kush.procol.index.collections;
 
+import static com.kush.procol.index.IndexSelectionPolicy.option;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -11,10 +13,8 @@ import com.kush.procol.index.Attribute;
 import com.kush.procol.index.Index;
 import com.kush.procol.index.IndexQuery;
 import com.kush.procol.index.IndexResult;
-import com.kush.procol.index.IndexQuery.RangeSetProvider;
-import com.kush.procol.index.policies.IndexSelectionPolicy;
-import com.kush.procol.index.policies.MostSelectiveIndexPolicy;
-import com.kush.procol.index.policies.IndexSelectionPolicy.IndexOption;
+import com.kush.procol.index.IndexSelectionPolicy.IndexOption;
+import com.kush.procol.index.IndexableCollection;
 
 public class DefaultIndexableCollection<T> extends AbstractIndexableCollection<T> {
 
@@ -22,11 +22,8 @@ public class DefaultIndexableCollection<T> extends AbstractIndexableCollection<T
 
     private final Collection<T> collection;
 
-    private IndexSelectionPolicy<T> policy;
-
     public DefaultIndexableCollection(Collection<T> collection) {
         this.collection = collection;
-        setIndexSelectionPolicy(new MostSelectiveIndexPolicy<>());
     }
 
     @Override
@@ -35,19 +32,13 @@ public class DefaultIndexableCollection<T> extends AbstractIndexableCollection<T
     }
 
     @Override
-    public void setIndexSelectionPolicy(IndexSelectionPolicy<T> policy) {
-        this.policy = policy;
-    }
-
-    @Override
     public IndexResult<T> query(IndexQuery<T> query) {
         Iterator<IndexOption<T>> options = query.getFilteringAttributes()
             .stream()
-            .map(attr -> IndexSelectionPolicy.option(attr, indexes.get(attr)))
+            .map(attr -> option(attr, indexes.get(attr)))
             .filter(opt -> opt.getIndex() != null)
             .iterator();
-        RangeSetProvider rangeSetProvider = query.getRangeSetProvider();
-        Optional<IterableResult<T>> result = policy.getResult(options, rangeSetProvider);
+        Optional<IterableResult<T>> result = IndexableCollection.getResult(options, query);
         return IndexResult.from(result);
     }
 

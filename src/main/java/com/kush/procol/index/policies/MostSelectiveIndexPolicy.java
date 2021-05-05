@@ -4,11 +4,10 @@ import java.util.Iterator;
 import java.util.Optional;
 
 import com.kush.commons.IterableResult;
-import com.kush.commons.ranges.RangeSet;
-import com.kush.procol.index.Index;
 import com.kush.procol.index.IndexQuery.RangeSetProvider;
+import com.kush.procol.index.IndexSelectionPolicy;
 
-public class MostSelectiveIndexPolicy<T> implements IndexSelectionPolicy<T> {
+public class MostSelectiveIndexPolicy<T> extends IndexSelectionPolicy<T> {
 
     @Override
     public Optional<IterableResult<T>> getResult(Iterator<IndexOption<T>> indexOptions, RangeSetProvider rangeSetProvider) {
@@ -27,11 +26,5 @@ public class MostSelectiveIndexPolicy<T> implements IndexSelectionPolicy<T> {
             }
         }
         return Optional.ofNullable(bestResult);
-    }
-
-    private <K> Optional<IterableResult<T>> getResult(IndexOption<T> option, RangeSetProvider rangeSetProvider) {
-        Index<K, T> index = option.getIndex();
-        Optional<RangeSet<K>> ranges = rangeSetProvider.getRanges(option.getAttribute());
-        return ranges.map(index::find);
     }
 }
