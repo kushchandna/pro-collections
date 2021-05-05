@@ -11,11 +11,12 @@ public interface IndexableCollection<T> extends Collection<T> {
 
     <K> void addIndex(Attribute attribute, Index<K, T> index);
 
+    void onUpdate(T oldObject, T newObject);
+
     IndexResult<T> query(IndexQuery<T> query);
 
-    static <T> Optional<IterableResult<T>> getResult(Iterator<IndexOption<T>> indexOptions,
-            IndexQuery<T> query) {
+    static <T> Optional<IterableResult<T>> getResult(Iterator<IndexOption<T>> options, IndexQuery<T> query) {
         IndexSelectionPolicy<T> indexSelectionPolicy = query.getIndexSelectionPolicy();
-        return indexSelectionPolicy.getResult(indexOptions, query.getRangeSetProvider());
+        return indexSelectionPolicy.getResult(options, query.getRangeSetProvider());
     }
 }

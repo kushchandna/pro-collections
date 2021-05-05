@@ -44,5 +44,10 @@
 			<artifactId>expressions</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>it.unimi.dsi</groupId>
+			<artifactId>fastutil</artifactId>
+			<version>8.1.1</version>
+		</dependency>
 	</dependencies>
 </project>
