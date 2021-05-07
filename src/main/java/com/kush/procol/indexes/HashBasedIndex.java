@@ -3,12 +3,14 @@ package com.kush.procol.indexes;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import com.kush.commons.IterableResult;
+import com.kush.commons.NullableOptional;
+import com.kush.commons.ranges.Range;
 import com.kush.commons.ranges.RangeSet;
 import com.kush.procol.Index;
 
@@ -26,12 +28,32 @@ class HashBasedIndex<K, T> extends Index<K, T> {
 
     @Override
     protected IterableResult<T> find(RangeSet<K> rangeSet) {
-        List<Collection<T>> matchingLists = indexedValues.entrySet()
+        return IterableResult.onCollections(matchingListsStream(rangeSet).collect(toList()));
+    }
+
+    private Stream<Collection<T>> matchingListsStream(RangeSet<K> rangeSet) {
+        if (rangeSet.containsAllPointRanges()) {
+            return findForAllPointRanges(rangeSet);
+        } else {
+            return scanAllKeys(rangeSet);
+        }
+    }
+
+    private Stream<Collection<T>> scanAllKeys(RangeSet<K> rangeSet) {
+        return indexedValues.entrySet()
             .stream()
             .filter(entry -> rangeSet.contains(entry.getKey()))
-            .map(entry -> entry.getValue())
-            .collect(toList());
-        return IterableResult.onCollections(matchingLists);
+            .map(entry -> entry.getValue());
+    }
+
+    private Stream<Collection<T>> findForAllPointRanges(RangeSet<K> rangeSet) {
+        return rangeSet.getRanges()
+            .stream()
+            .map(Range::getPointValue)
+            // guaranteed to be non-empty as all are point ranges
+            .map(NullableOptional::get)
+            .map(indexedValues::get)
+            .filter(Objects::nonNull);
     }
 
     @Override
