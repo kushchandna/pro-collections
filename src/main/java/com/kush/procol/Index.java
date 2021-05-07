@@ -21,11 +21,11 @@ public abstract class Index<K, T> {
 
     protected abstract boolean areKeysEqual(K oldKey, K newKey);
 
-    protected boolean onUpdate(T oldObject, T newObject) {
+    protected void onUpdate(T oldObject, T newObject) {
         K oldKey = oldObject == null ? null : keyGetter.apply(oldObject);
         K newKey = newObject == null ? null : keyGetter.apply(newObject);
         if (oldObject == newObject && areKeysEqual(oldKey, newKey)) {
-            return false;
+            return;
         }
         if (oldObject != null) {
             removeFromIndexedValues(oldKey, oldObject);
@@ -33,7 +33,6 @@ public abstract class Index<K, T> {
         if (newObject != null) {
             addToIndexedValues(newKey, newObject);
         }
-        return true;
     }
 
     protected final K getValue(T object) {
