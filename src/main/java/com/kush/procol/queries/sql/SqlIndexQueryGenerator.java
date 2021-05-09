@@ -19,10 +19,10 @@ public class SqlIndexQueryGenerator<T> {
 
     private final ExpressionParser<String> sqlParser;
     private final ExpressionEvaluatorFactory<T> evalFactory;
-    private final IndexSelectionPolicy<T> indexSelectionPolicy;
+    private final IndexSelectionPolicy indexSelectionPolicy;
 
     public SqlIndexQueryGenerator(ExpressionParser<String> sqlParser, ExpressionEvaluatorFactory<T> evalFactory,
-            IndexSelectionPolicy<T> indexSelectionPolicy) {
+            IndexSelectionPolicy indexSelectionPolicy) {
         this.sqlParser = sqlParser;
         this.evalFactory = evalFactory;
         this.indexSelectionPolicy = indexSelectionPolicy;
@@ -70,7 +70,7 @@ public class SqlIndexQueryGenerator<T> {
         }
 
         @Override
-        public IndexSelectionPolicy<T> getIndexSelectionPolicy() {
+        public IndexSelectionPolicy getIndexSelectionPolicy() {
             return indexSelectionPolicy;
         }
 

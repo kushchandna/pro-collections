@@ -7,9 +7,9 @@ import com.kush.commons.IterableResult;
 import com.kush.commons.ranges.RangeSet;
 import com.kush.procol.IndexQuery.RangeSetProvider;
 
-public abstract class IndexSelectionPolicy<T> {
+public abstract class IndexSelectionPolicy {
 
-    protected abstract Optional<IterableResult<T>> getResult(Iterator<IndexOption<T>> indexOptions,
+    protected abstract <T> Optional<IterableResult<T>> getResult(Iterator<IndexOption<T>> indexOptions,
             RangeSetProvider rangeSetProvider);
 
     public interface IndexOption<T> {
@@ -35,7 +35,7 @@ public abstract class IndexSelectionPolicy<T> {
         };
     }
 
-    protected final <K> Optional<IterableResult<T>> getResult(IndexOption<T> option, RangeSetProvider rangeSetProvider) {
+    protected final <K, T> Optional<IterableResult<T>> getResult(IndexOption<T> option, RangeSetProvider rangeSetProvider) {
         Index<K, T> index = option.getIndex();
         Optional<RangeSet<K>> ranges = rangeSetProvider.getRanges(option.getAttribute());
         return ranges.map(index::find);

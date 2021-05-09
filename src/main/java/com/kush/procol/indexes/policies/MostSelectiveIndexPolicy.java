@@ -4,13 +4,13 @@ import java.util.Iterator;
 import java.util.Optional;
 
 import com.kush.commons.IterableResult;
-import com.kush.procol.IndexSelectionPolicy;
 import com.kush.procol.IndexQuery.RangeSetProvider;
+import com.kush.procol.IndexSelectionPolicy;
 
-public class MostSelectiveIndexPolicy<T> extends IndexSelectionPolicy<T> {
+public class MostSelectiveIndexPolicy extends IndexSelectionPolicy {
 
     @Override
-    public Optional<IterableResult<T>> getResult(Iterator<IndexOption<T>> indexOptions, RangeSetProvider rangeSetProvider) {
+    public <T> Optional<IterableResult<T>> getResult(Iterator<IndexOption<T>> indexOptions, RangeSetProvider rangeSetProvider) {
         long minObjects = Long.MAX_VALUE;
         IterableResult<T> bestResult = null;
         while (indexOptions.hasNext()) {

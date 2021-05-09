@@ -16,7 +16,7 @@ public interface IndexableCollection<T> extends Collection<T> {
     IndexResult<T> query(IndexQuery<T> query);
 
     static <T> Optional<IterableResult<T>> getResult(Iterator<IndexOption<T>> options, IndexQuery<T> query) {
-        IndexSelectionPolicy<T> indexSelectionPolicy = query.getIndexSelectionPolicy();
+        IndexSelectionPolicy indexSelectionPolicy = query.getIndexSelectionPolicy();
         return indexSelectionPolicy.getResult(options, query.getRangeSetProvider());
     }
 }

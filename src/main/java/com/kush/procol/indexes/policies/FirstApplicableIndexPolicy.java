@@ -5,13 +5,13 @@ import java.util.Optional;
 
 import com.kush.commons.IterableResult;
 import com.kush.commons.ranges.RangeSet;
-import com.kush.procol.IndexSelectionPolicy;
 import com.kush.procol.IndexQuery.RangeSetProvider;
+import com.kush.procol.IndexSelectionPolicy;
 
-public class FirstApplicableIndexPolicy<T> extends IndexSelectionPolicy<T> {
+public class FirstApplicableIndexPolicy extends IndexSelectionPolicy {
 
     @Override
-    public Optional<IterableResult<T>> getResult(Iterator<IndexOption<T>> indexOptions, RangeSetProvider rangeSetProvider) {
+    public <T> Optional<IterableResult<T>> getResult(Iterator<IndexOption<T>> indexOptions, RangeSetProvider rangeSetProvider) {
         while (indexOptions.hasNext()) {
             IndexSelectionPolicy.IndexOption<T> indexOption = indexOptions.next();
             Optional<RangeSet<Object>> ranges = rangeSetProvider.getRanges(indexOption.getAttribute());

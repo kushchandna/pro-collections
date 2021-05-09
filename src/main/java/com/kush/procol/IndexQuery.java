@@ -13,8 +13,8 @@ public interface IndexQuery<T> {
 
     RangeSetProvider getRangeSetProvider();
 
-    default IndexSelectionPolicy<T> getIndexSelectionPolicy() {
-        return new MostSelectiveIndexPolicy<>();
+    default IndexSelectionPolicy getIndexSelectionPolicy() {
+        return new MostSelectiveIndexPolicy();
     }
 
     default boolean skipFallbackFilter() {
