@@ -25,7 +25,7 @@ public interface IndexQuery<T> {
         return obj -> true;
     }
 
-    interface RangeSetProvider {
+    public interface RangeSetProvider {
 
         <K> Optional<RangeSet<K>> getRanges(Attribute attribute);
     }
