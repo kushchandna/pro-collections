@@ -1,5 +1,6 @@
 package com.kush.procol;
 
+import static com.kush.procol.indexes.IndexFactory.createIndexWithSortedKeys;
 import static java.lang.System.currentTimeMillis;
 import static java.util.stream.Collectors.toList;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,7 +21,6 @@ import com.kush.lib.expressions.evaluators.FieldExpressionEvaluatorFactory;
 import com.kush.lib.expressions.factory.DefaultExpressionFactory;
 import com.kush.lib.expressions.parsers.sql.SqlExpressionParser;
 import com.kush.procol.collections.IndexableArrayList;
-import com.kush.procol.indexes.IndexFactory;
 import com.kush.procol.indexes.policies.FirstApplicableIndexPolicy;
 import com.kush.procol.queries.sql.SqlFieldAttribute;
 import com.kush.procol.queries.sql.SqlIndexQueryGenerator;
@@ -31,8 +31,8 @@ public class PerformanceTest {
     public void testName() throws Exception {
 
         IndexableCollection<SampleObject> collection = new IndexableArrayList<>();
-        int totalObjects = 10_000_000;
-        int labels = 100;
+        int totalObjects = 5_000_000;
+        int labels = 500_000;
         for (int i = 1; i <= totalObjects; i++) {
             collection.add(sample("Name" + i, "Label" + i % labels));
         }
@@ -45,13 +45,15 @@ public class PerformanceTest {
         assertThat(filteredObjects, hasSize(totalObjects / labels));
         System.out.println("Without index: " + timeTaken);
 
-        Index<String, SampleObject> index = IndexFactory.createIndexWithSortedKeys(o -> o.label);
+        Index<String, SampleObject> index = createIndexWithSortedKeys(o -> o.label);
         collection.addIndex(new SqlFieldAttribute("label"), index);
 
         IndexQuery<SampleObject> query = createQuery("label = 'Label1'");
 
         start = currentTimeMillis();
-        filteredObjects = collection.query(query).stream().collect(toList());
+        filteredObjects = collection.query(query).stream()
+            .filter(o -> o.label.equals("Label1"))
+            .collect(toList());
         timeTaken = currentTimeMillis() - start;
         assertThat(filteredObjects, hasSize(totalObjects / labels));
         System.out.println("With index: " + timeTaken);
