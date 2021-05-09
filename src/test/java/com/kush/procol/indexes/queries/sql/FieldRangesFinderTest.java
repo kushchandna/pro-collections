@@ -1,4 +1,4 @@
-package com.kush.procol.queries.sql;
+package com.kush.procol.indexes.queries.sql;
 
 import static com.kush.commons.ranges.StringRangeAdapter.parseString;
 import static com.kush.commons.utils.MapUtils.newHashMap;

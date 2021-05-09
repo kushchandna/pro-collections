@@ -1,4 +1,4 @@
-package com.kush.procol;
+package com.kush.procol.indexes;
 
 import java.util.function.Function;
 

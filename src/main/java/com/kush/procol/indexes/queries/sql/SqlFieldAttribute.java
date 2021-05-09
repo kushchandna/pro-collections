@@ -1,6 +1,6 @@
-package com.kush.procol.queries.sql;
+package com.kush.procol.indexes.queries.sql;
 
-import com.kush.procol.Attribute;
+import com.kush.procol.indexes.Attribute;
 
 public class SqlFieldAttribute implements Attribute {
 

@@ -1,12 +1,12 @@
-package com.kush.procol.collections;
+package com.kush.procol.indexes.collections;
 
 import static com.kush.commons.utils.ObjectUtils.executeIfTrue;
 
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.kush.procol.BaseIndexableCollection;
-import com.kush.procol.Index;
+import com.kush.procol.indexes.BaseIndexableCollection;
+import com.kush.procol.indexes.Index;
 
 /*
  * TODO this class can be replaced with more specific implementations of collections for supporting all interfaces of Sets, Lists etc

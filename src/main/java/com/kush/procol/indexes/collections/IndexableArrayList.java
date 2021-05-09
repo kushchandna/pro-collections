@@ -1,4 +1,4 @@
-package com.kush.procol.collections;
+package com.kush.procol.indexes.collections;
 
 import java.util.ArrayList;
 

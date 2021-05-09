@@ -1,6 +1,6 @@
-package com.kush.procol;
+package com.kush.procol.indexes;
 
-import static com.kush.procol.IndexSelectionPolicy.option;
+import static com.kush.procol.indexes.IndexSelectionPolicy.option;
 
 import java.util.AbstractCollection;
 import java.util.Iterator;
@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import com.kush.commons.IterableResult;
-import com.kush.procol.IndexSelectionPolicy.IndexOption;
+import com.kush.procol.indexes.IndexSelectionPolicy.IndexOption;
 
 public abstract class BaseIndexableCollection<T> extends AbstractCollection<T> implements IndexableCollection<T> {
 

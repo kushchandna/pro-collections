@@ -1,4 +1,4 @@
-package com.kush.procol.indexes;
+package com.kush.procol.indexes.types;
 
 import static java.util.stream.Collectors.toList;
 
@@ -14,7 +14,7 @@ import com.kush.commons.IterableResult;
 import com.kush.commons.NullableOptional;
 import com.kush.commons.ranges.Range;
 import com.kush.commons.ranges.RangeSet;
-import com.kush.procol.Index;
+import com.kush.procol.indexes.Index;
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 

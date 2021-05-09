@@ -1,4 +1,4 @@
-package com.kush.procol.queries.sql;
+package com.kush.procol.indexes.queries.sql;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,8 +9,8 @@ import com.kush.commons.ranges.RangeSet;
 import com.kush.lib.expressions.Expression;
 import com.kush.lib.expressions.ExpressionEvaluatorFactory;
 import com.kush.lib.expressions.ExpressionException;
-import com.kush.procol.Attribute;
-import com.kush.procol.IndexQuery.RangeSetProvider;
+import com.kush.procol.indexes.Attribute;
+import com.kush.procol.indexes.IndexQuery.RangeSetProvider;
 
 class SqlFieldRangeSetProvider implements RangeSetProvider {
 

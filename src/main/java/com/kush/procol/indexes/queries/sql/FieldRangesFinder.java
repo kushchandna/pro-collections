@@ -1,4 +1,4 @@
-package com.kush.procol.queries.sql;
+package com.kush.procol.indexes.queries.sql;
 
 import static com.kush.commons.utils.MapUtils.intersect;
 import static com.kush.commons.utils.MapUtils.union;

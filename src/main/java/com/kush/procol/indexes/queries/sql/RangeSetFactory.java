@@ -1,4 +1,4 @@
-package com.kush.procol.queries.sql;
+package com.kush.procol.indexes.queries.sql;
 
 import java.util.Collection;
 

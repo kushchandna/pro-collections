@@ -1,11 +1,11 @@
-package com.kush.procol.indexes;
+package com.kush.procol.indexes.types;
 
 import static java.util.Comparator.naturalOrder;
 
 import java.util.Comparator;
 import java.util.function.Function;
 
-import com.kush.procol.Index;
+import com.kush.procol.indexes.Index;
 
 public class IndexFactory {
 

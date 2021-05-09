@@ -1,6 +1,6 @@
-package com.kush.procol;
+package com.kush.procol.indexes;
 
-import static com.kush.procol.indexes.IndexFactory.createIndexWithSortedKeys;
+import static com.kush.procol.indexes.types.IndexFactory.createIndexWithSortedKeys;
 import static java.lang.System.currentTimeMillis;
 import static java.util.stream.Collectors.toList;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,10 +20,10 @@ import com.kush.lib.expressions.evaluators.DefaultExpressionEvaluatorFactory;
 import com.kush.lib.expressions.evaluators.FieldExpressionEvaluatorFactory;
 import com.kush.lib.expressions.factory.DefaultExpressionFactory;
 import com.kush.lib.expressions.parsers.sql.SqlExpressionParser;
-import com.kush.procol.collections.IndexableArrayList;
+import com.kush.procol.indexes.collections.IndexableArrayList;
 import com.kush.procol.indexes.policies.FirstApplicableIndexPolicy;
-import com.kush.procol.queries.sql.SqlFieldAttribute;
-import com.kush.procol.queries.sql.SqlIndexQueryGenerator;
+import com.kush.procol.indexes.queries.sql.SqlFieldAttribute;
+import com.kush.procol.indexes.queries.sql.SqlIndexQueryGenerator;
 
 public class PerformanceTest {
 

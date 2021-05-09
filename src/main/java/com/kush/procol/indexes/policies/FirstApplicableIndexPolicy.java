@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import com.kush.commons.IterableResult;
 import com.kush.commons.ranges.RangeSet;
-import com.kush.procol.IndexQuery.RangeSetProvider;
-import com.kush.procol.IndexSelectionPolicy;
+import com.kush.procol.indexes.IndexSelectionPolicy;
+import com.kush.procol.indexes.IndexQuery.RangeSetProvider;
 
 public class FirstApplicableIndexPolicy extends IndexSelectionPolicy {
 

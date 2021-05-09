@@ -1,4 +1,4 @@
-package com.kush.procol.queries.sql;
+package com.kush.procol.indexes.queries.sql;
 
 import static java.util.stream.Collectors.toList;
 
@@ -11,9 +11,9 @@ import com.kush.lib.expressions.ExpressionEvaluatorFactory;
 import com.kush.lib.expressions.ExpressionException;
 import com.kush.lib.expressions.ExpressionParser;
 import com.kush.lib.expressions.types.TypedValue;
-import com.kush.procol.Attribute;
-import com.kush.procol.IndexQuery;
-import com.kush.procol.IndexSelectionPolicy;
+import com.kush.procol.indexes.Attribute;
+import com.kush.procol.indexes.IndexQuery;
+import com.kush.procol.indexes.IndexSelectionPolicy;
 
 public class SqlIndexQueryGenerator<T> {
 
