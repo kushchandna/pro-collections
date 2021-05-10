@@ -92,6 +92,11 @@ class FieldRangesFinder extends ExpressionProcessor<Map<String, RangeSet<?>>> {
         return singletonMap(fieldName(target), RangeSetFactory.forInOperation(inVals));
     }
 
+    @Override
+    protected Map<String, RangeSet<?>> getDefaultValue() {
+        return emptyMap();
+    }
+
     private Map<String, RangeSet<?>> processBinomialExpr(BinomialExpression expression,
             Function<TypedValue, RangeSet<?>> rangeSetGenerator) throws ExpressionException {
         Expression left = expression.getLeft();
