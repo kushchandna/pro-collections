@@ -15,7 +15,6 @@ import com.kush.lib.expressions.Expression;
 import com.kush.lib.expressions.ExpressionEvaluator;
 import com.kush.lib.expressions.ExpressionEvaluatorFactory;
 import com.kush.lib.expressions.ExpressionException;
-import com.kush.lib.expressions.ExpressionProcessor;
 import com.kush.lib.expressions.clauses.AndExpression;
 import com.kush.lib.expressions.clauses.EqualsExpression;
 import com.kush.lib.expressions.clauses.FieldExpression;
@@ -27,9 +26,10 @@ import com.kush.lib.expressions.clauses.LessThanExpression;
 import com.kush.lib.expressions.clauses.OrExpression;
 import com.kush.lib.expressions.commons.BinomialExpression;
 import com.kush.lib.expressions.types.TypedValue;
+import com.kush.lib.expressions.utils.BaseExpressionProcessor;
 import com.kush.lib.expressions.utils.ExpressionUtils;
 
-class FieldRangesFinder extends ExpressionProcessor<Map<String, RangeSet<?>>> {
+class FieldRangesFinder extends BaseExpressionProcessor<Map<String, RangeSet<?>>> {
 
     private final ExpressionEvaluatorFactory<?> evaluatorFactory;
 
