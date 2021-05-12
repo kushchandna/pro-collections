@@ -104,7 +104,7 @@ public class FieldRangesFinderTest {
 
     private FieldRangesFinder createRangesFinder() {
         FieldExpressionEvaluatorFactory<?> fieldEvalFactory = new AspectFieldEvaluationFactory<>(aspect);
-        ExpressionEvaluatorFactory<?> evalFactory = new DefaultExpressionEvaluatorFactory<>(fieldEvalFactory);
+        ExpressionEvaluatorFactory<?> evalFactory = new DefaultExpressionEvaluatorFactory<>(fieldEvalFactory, null);
         return new FieldRangesFinder(evalFactory);
     }
 

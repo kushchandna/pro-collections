@@ -64,7 +64,7 @@ public class PerformanceTest {
         SqlExpressionParser parser = new SqlExpressionParser(factory);
         Aspect<SampleObject> aspect = Aspects.classBased(SampleObject.class);
         FieldExpressionEvaluatorFactory<SampleObject> fieldEvalFactory = new AspectFieldEvaluationFactory<>(aspect);
-        ExpressionEvaluatorFactory<SampleObject> evalFactory = new DefaultExpressionEvaluatorFactory<>(fieldEvalFactory);
+        ExpressionEvaluatorFactory<SampleObject> evalFactory = new DefaultExpressionEvaluatorFactory<>(fieldEvalFactory, null);
         IndexSelectionPolicy policy = new FirstApplicableIndexPolicy();
         SqlIndexQueryGenerator<SampleObject> queryGenerator = new SqlIndexQueryGenerator<>(parser, evalFactory, policy);
         IndexQuery<SampleObject> query = queryGenerator.generate(sql);
