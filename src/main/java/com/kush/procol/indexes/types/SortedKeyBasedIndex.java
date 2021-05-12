@@ -83,9 +83,9 @@ class SortedKeyBasedIndex<K, T> extends Index<K, T> implements Cloneable {
     }
 
     private NavigableMap<K, Collection<T>> cloneIndexedValues() {
-        // create a copy of tree map in linear time using constructor accepting sorted map
+        // copy all entries in linear time
         NavigableMap<K, Collection<T>> indexedValuesClone = new TreeMap<>(this.indexedValues);
-        // iterate over all the nodes in clone in linear time and replace value collection with a copy
+        // replace all values with their respective clones in linear time
         indexedValuesClone.entrySet().forEach(this::replaceValueWithCopyCollection);
         return indexedValuesClone;
     }
