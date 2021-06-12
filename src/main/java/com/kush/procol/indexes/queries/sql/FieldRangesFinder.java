@@ -26,10 +26,10 @@ import com.kush.lib.expressions.clauses.LessThanExpression;
 import com.kush.lib.expressions.clauses.OrExpression;
 import com.kush.lib.expressions.commons.BinomialExpression;
 import com.kush.lib.expressions.types.TypedValue;
-import com.kush.lib.expressions.utils.BaseExpressionProcessor;
+import com.kush.lib.expressions.utils.BaseExpressionHandler;
 import com.kush.lib.expressions.utils.ExpressionUtils;
 
-class FieldRangesFinder extends BaseExpressionProcessor<Map<String, RangeSet<?>>> {
+class FieldRangesFinder extends BaseExpressionHandler<Map<String, RangeSet<?>>> {
 
     private final ExpressionEvaluatorFactory<?> evaluatorFactory;
 
@@ -39,14 +39,14 @@ class FieldRangesFinder extends BaseExpressionProcessor<Map<String, RangeSet<?>>
 
     @Override
     protected Map<String, RangeSet<?>> handle(AndExpression expression) throws ExpressionException {
-        return union(process(expression.getLeft()), process(expression.getRight()), (field, rangesLeft, rangesRight) -> {
+        return union(accept(expression.getLeft()), accept(expression.getRight()), (field, rangesLeft, rangesRight) -> {
             return intersectRangeSets(rangesLeft, rangesRight);
         });
     }
 
     @Override
     protected Map<String, RangeSet<?>> handle(OrExpression expression) throws ExpressionException {
-        return intersect(process(expression.getLeft()), process(expression.getRight()), (field, rangesLeft, rangesRight) -> {
+        return intersect(accept(expression.getLeft()), accept(expression.getRight()), (field, rangesLeft, rangesRight) -> {
             return unionRangeSets(rangesLeft, rangesRight);
         });
     }

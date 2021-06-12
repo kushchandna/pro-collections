@@ -42,6 +42,6 @@ class SqlFieldRangeSetProvider implements RangeSetProvider {
     private Map<String, RangeSet<?>> process(Expression sqlExpression, ExpressionEvaluatorFactory<?> evalFactory)
             throws ExpressionException {
         FieldRangesFinder finder = new FieldRangesFinder(evalFactory);
-        return finder.process(sqlExpression);
+        return finder.accept(sqlExpression);
     }
 }

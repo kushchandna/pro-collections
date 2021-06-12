@@ -49,50 +49,50 @@ public class FieldRangesFinderTest {
 
     @Test
     public void simpleEqualsOperation() throws Exception {
-        Map<String, RangeSet<?>> ranges = finder.process(sql("label = 'Red'"));
+        Map<String, RangeSet<?>> ranges = finder.accept(sql("label = 'Red'"));
         assertThat(ranges, hasEntry("label", ranges("[Red - Red]")));
     }
 
     @Test
     public void simpleInOperation() throws Exception {
-        Map<String, RangeSet<?>> ranges = finder.process(sql("label IN ('Red', 'Blue')"));
+        Map<String, RangeSet<?>> ranges = finder.accept(sql("label IN ('Red', 'Blue')"));
         assertThat(ranges, hasEntry("label", ranges("[Red - Red]", "[Blue - Blue]")));
     }
 
     @Test
     public void simpleGreaterThanOperation() throws Exception {
-        Map<String, RangeSet<?>> ranges = finder.process(sql("label > 'Red'"));
+        Map<String, RangeSet<?>> ranges = finder.accept(sql("label > 'Red'"));
         assertThat(ranges, hasEntry("label", ranges("(Red - *)")));
     }
 
     @Test
     public void simpleLessThanEqualsOperation() throws Exception {
-        Map<String, RangeSet<?>> ranges = finder.process(sql("label <= 'Red'"));
+        Map<String, RangeSet<?>> ranges = finder.accept(sql("label <= 'Red'"));
         assertThat(ranges, hasEntry("label", ranges("(* - Red]")));
     }
 
     @Test
     public void operationWithAndOnDifferentFields() throws Exception {
-        Map<String, RangeSet<?>> ranges = finder.process(sql("label = 'Red' AND name > 'Obj1'"));
+        Map<String, RangeSet<?>> ranges = finder.accept(sql("label = 'Red' AND name > 'Obj1'"));
         assertThat(ranges, hasEntry("label", ranges("[Red - Red]")));
         assertThat(ranges, hasEntry("name", ranges("(Obj1 - *)")));
     }
 
     @Test
     public void operationsWithAndOnSameFields() throws Exception {
-        Map<String, RangeSet<?>> ranges = finder.process(sql("label <= 'Red' AND label > 'Blue'"));
+        Map<String, RangeSet<?>> ranges = finder.accept(sql("label <= 'Red' AND label > 'Blue'"));
         assertThat(ranges, hasEntry("label", ranges("(Blue - Red]")));
     }
 
     @Test
     public void operationWithOrOnDifferentFields() throws Exception {
-        Map<String, RangeSet<?>> ranges = finder.process(sql("label = 'Red' OR name > 'Obj1'"));
+        Map<String, RangeSet<?>> ranges = finder.accept(sql("label = 'Red' OR name > 'Obj1'"));
         assertThat(ranges.entrySet(), hasSize(0));
     }
 
     @Test
     public void operationsWithOrOnSameFields() throws Exception {
-        Map<String, RangeSet<?>> ranges = finder.process(sql("label >= 'Red' OR label = 'Blue'"));
+        Map<String, RangeSet<?>> ranges = finder.accept(sql("label >= 'Red' OR label = 'Blue'"));
         assertThat(ranges, hasEntry("label", ranges("[Blue - Blue]", "[Red - *)")));
     }
 
