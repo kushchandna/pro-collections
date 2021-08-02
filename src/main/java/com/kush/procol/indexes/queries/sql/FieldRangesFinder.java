@@ -104,7 +104,7 @@ class FieldRangesFinder extends BaseExpressionHandler<Map<String, RangeSet<?>>> 
         if (isField(left) && isConstant(right)) {
             return singletonMap(fieldName(left), rangeSetGenerator.apply(constantValue(right)));
         } else if (isConstant(left) && isField(right)) {
-            return singletonMap(fieldName(right), rangeSetGenerator.apply(constantValue(right)));
+            return singletonMap(fieldName(right), rangeSetGenerator.apply(constantValue(left)));
         } else {
             return emptyMap();
         }
