@@ -4,7 +4,6 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.Collection;
 import java.util.Comparator;
-import java.util.Map.Entry;
 import java.util.NavigableMap;
 import java.util.Objects;
 import java.util.TreeMap;
@@ -18,7 +17,7 @@ import com.kush.procol.indexes.Index;
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 
-class SortedKeyBasedIndex<K, T> extends Index<K, T> implements Cloneable {
+class SortedKeyBasedIndex<K, T> extends Index<K, T> {
 
     private final Comparator<K> comparator;
     private final NavigableMap<K, Collection<T>> indexedValues;
@@ -60,12 +59,6 @@ class SortedKeyBasedIndex<K, T> extends Index<K, T> implements Cloneable {
         return comparator.compare(key1, key2) == 0;
     }
 
-    @Override
-    public SortedKeyBasedIndex<K, T> clone() {
-        NavigableMap<K, Collection<T>> indexedValuesClone = cloneIndexedValues();
-        return new SortedKeyBasedIndex<>(comparator, getKeyGetter(), indexedValuesClone);
-    }
-
     private IterableResult<T> getMatchForRange(Range<K> range) {
         NullableOptional<K> start = range.getStart();
         NullableOptional<K> end = range.getEnd();
@@ -80,18 +73,5 @@ class SortedKeyBasedIndex<K, T> extends Index<K, T> implements Cloneable {
             resultMap = indexedValues;
         }
         return IterableResult.onCollections(resultMap.values());
-    }
-
-    private NavigableMap<K, Collection<T>> cloneIndexedValues() {
-        // copy all entries in linear time
-        NavigableMap<K, Collection<T>> indexedValuesClone = new TreeMap<>(this.indexedValues);
-        // replace all values with their respective clones in linear time
-        indexedValuesClone.entrySet().forEach(this::replaceValueWithCopyCollection);
-        return indexedValuesClone;
-    }
-
-    private Collection<T> replaceValueWithCopyCollection(Entry<K, Collection<T>> entry) {
-        Collection<T> objects = entry.getValue();
-        return entry.setValue(((ObjectOpenHashSet<T>) objects).clone());
     }
 }
